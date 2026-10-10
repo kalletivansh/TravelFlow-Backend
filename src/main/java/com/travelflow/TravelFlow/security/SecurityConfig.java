@@ -1,3 +1,4 @@
+
 package com.travelflow.TravelFlow.security;
 
 import java.util.List;
@@ -36,7 +37,9 @@ public class SecurityConfig {
 
         http
             .csrf(AbstractHttpConfigurer::disable)
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            .cors(cors ->
+                cors.configurationSource(corsConfigurationSource())
+            )
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
@@ -66,11 +69,16 @@ public class SecurityConfig {
         ));
 
         configuration.setAllowedMethods(List.of(
-            "GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"
+            "GET", "POST", "PUT", "PATCH",
+            "DELETE", "OPTIONS"
         ));
 
         configuration.setAllowedHeaders(List.of(
-            "Authorization", "Content-Type", "Accept", "Origin"
+            "Authorization",
+            "Content-Type",
+            "Accept",
+            "Origin",
+            "X-Requested-With"
         ));
 
         configuration.setAllowCredentials(true);
